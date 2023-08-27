@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ideaflow assignment website</title>
+    <style>
+        body {
+            background-color: #888888; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+       
+        .navbar {
+            background-color: #007BFF; 
+            color: #fff; 
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        
+        .comments-container {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 20px;
+        }
+
+       
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            outline: none;
+        }
+
+       
+        .add-comment-btn {
+            display: block;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        /* Style for individual comments */
+        .comment {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="navbar">
+        ASSIGNMENT OF IDEAFLOW
+    </div>
+
+    <div class="comments-container">
+        <h1>Enter your Idea here</h1>
+
+        <form id="commentForm">
+            <input type="text" id="commentInput" class="comment-input" placeholder="Enter your text" required>
+            <button type="submit" class="add-comment-btn">Add</button>
+        </form>
+
+        
+        <div id="commentsContainer"></div>
+    </div>
+
+    <script>
+     
+        function addComment() {
+          
+            const commentText = document.getElementById('commentInput').value;
+
+            if (commentText.trim() === '') {
+                alert('Please enter a text.');
+                return;
+            }
+
+            
+            const commentElement = document.createElement('div');
+            commentElement.className = 'comment';
+
+          
+            commentElement.textContent = commentText;
+
+           
+            const deleteButton = document.createElement('span');
+            deleteButton.className = 'delete-btn';
+            deleteButton.textContent = 'Delete';
+
+           
+            deleteButton.addEventListener('click', function () {
+                commentsContainer.removeChild(commentElement);
+            });
+
+           
+            commentElement.appendChild(deleteButton);
+
+           
+            const commentsContainer = document.getElementById('commentsContainer');
+            commentsContainer.appendChild(commentElement);
+
+        
+            document.getElementById('commentInput').value = '';
+        }
+
+     
+        document.getElementById('commentForm').addEventListener('submit', function (e) {
+            e.preventDefault(); 
+
+            addComment(); 
+        });
+    </script>
+</body>
+</html>
+
+
+
+
